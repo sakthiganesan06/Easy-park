@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========= BASE STYLES ========= */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #0a0e1a;
+    color: #e2e8f0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0f172a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+  }
+}
+
+/* ========= COMPONENT STYLES ========= */
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-lg;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-glow-blue;
+  }
+
+  /* Gradient Button */
+  .btn-primary {
+    @apply relative overflow-hidden bg-gradient-to-r from-electric-500 to-electric-600 
+           text-white font-semibold rounded-xl px-6 py-3 
+           transition-all duration-300 
+           hover:shadow-glow-blue hover:from-electric-400 hover:to-electric-500
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none;
+  }
+
+  .btn-secondary {
+    @apply bg-white/10 backdrop-blur-sm border border-white/20 text-white font-medium 
+           rounded-xl px-6 py-3 transition-all duration-300 
+           hover:bg-white/20 hover:border-white/30 active:scale-95;
+  }
+
+  .btn-danger {
+    @apply bg-gradient-to-r from-rose-500 to-rose-600 text-white font-semibold 
+           rounded-xl px-6 py-3 transition-all duration-300 
+           hover:shadow-glow-rose active:scale-95;
+  }
+
+  .btn-success {
+    @apply bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold 
+           rounded-xl px-6 py-3 transition-all duration-300 
+           hover:shadow-glow-emerald active:scale-95;
+  }
+
+  /* Input field */
+  .input-field {
+    @apply w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 
+           text-white placeholder-white/30 outline-none
+           transition-all duration-300
+           focus:border-electric-500 focus:bg-white/10 focus:shadow-inner-glow
+           focus:ring-2 focus:ring-electric-500/20;
+  }
+
+  /* Badge styles */
+  .badge-available {
+    @apply bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-locked {
+    @apply bg-amber-500/20 text-amber-400 border border-amber-500/30 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-occupied {
+    @apply bg-rose-500/20 text-rose-400 border border-rose-500/30 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  /* Page container */
+  .page-container {
+    @apply min-h-screen bg-navy-900 pb-20;
+  }
+
+  /* Bottom sheet */
+  .bottom-sheet {
+    @apply fixed bottom-0 left-0 right-0 bg-navy-800/95 backdrop-blur-xl 
+           border-t border-white/10 rounded-t-3xl z-40 
+           transition-transform duration-500 ease-out;
+  }
+
+  /* Pulsing dot (user location) */
+  .pulse-dot {
+    @apply relative w-4 h-4 bg-electric-500 rounded-full;
+  }
+  .pulse-dot::after {
+    content: '';
+    @apply absolute inset-0 bg-electric-500 rounded-full animate-pulse-ring;
+  }
+
+  /* Shimmer loading */
+  .shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
+}
+
+/* ========= LEAFLET MAP OVERRIDES ========= */
+.leaflet-container {
+  background: #0a0e1a !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.leaflet-control-zoom a {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  width: 36px !important;
+  height: 36px !important;
+  line-height: 36px !important;
+  font-size: 18px !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: #2a3a4f !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+  padding: 0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+}
+
+.leaflet-popup-tip {
+  background: #1e293b !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: none !important;
+}
+
+.leaflet-popup-close-button {
+  color: #94a3b8 !important;
+  font-size: 20px !important;
+  top: 8px !important;
+  right: 12px !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #e2e8f0 !important;
+}
+
+/* Custom marker styles */
+.custom-marker {
+  background: none;
+  border: none;
+}
+
+.marker-price {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  text-align: center;
+  position: relative;
+  font-family: 'Inter', sans-serif;
+}
+
+.marker-price::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid #2563eb;
+}
+
+.marker-price.available {
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+.marker-price.available::after {
+  border-top-color: #059669;
+}
+
+.marker-price.locked {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+.marker-price.locked::after {
+  border-top-color: #d97706;
+}
+
+.marker-price.occupied {
+  background: linear-gradient(135deg, #f43f5e, #e11d48);
+  box-shadow: 0 4px 12px rgba(244, 63, 94, 0.4);
+}
+
+.marker-price.occupied::after {
+  border-top-color: #e11d48;
+}
+
+/* User location marker */
+.user-marker {
+  width: 20px;
+  height: 20px;
+  background: #3b82f6;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  animation: userPulse 2s infinite;
+}
+
+@keyframes userPulse {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  70% { box-shadow: 0 0 0 20px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* Circular timer */
+.timer-ring {
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+/* OTP input */
+.otp-input {
+  width: 48px;
+  height: 56px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  outline: none;
+  transition: all 0.3s;
+  caret-color: #3b82f6;
+}
+
+.otp-input:focus {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Duration chip */
+.duration-chip {
+  @apply px-4 py-2 rounded-xl border text-sm font-semibold cursor-pointer transition-all duration-200;
+}
+
+.duration-chip.unselected {
+  @apply bg-white/5 border-white/10 text-white/60 hover:bg-white/10 hover:border-white/20;
+}
+
+.duration-chip.selected {
+  @apply bg-electric-500/20 border-electric-500 text-electric-400 shadow-glow-blue;
+}
+
+/* Step indicator */
+.step-dot {
+  @apply w-3 h-3 rounded-full transition-all duration-300;
+}
+.step-dot.active {
+  @apply bg-electric-500 w-8 shadow-glow-blue;
+}
+.step-dot.completed {
+  @apply bg-emerald-500;
+}
+.step-dot.pending {
+  @apply bg-white/20;
+}
+
+/* Notification pulse */
+@keyframes warningPulse {
+  0%, 100% { border-color: rgba(245, 158, 11, 0.3); }
+  50% { border-color: rgba(245, 158, 11, 0.8); }
+}
+
+.warning-pulse {
+  animation: warningPulse 1s ease-in-out infinite;
+}
