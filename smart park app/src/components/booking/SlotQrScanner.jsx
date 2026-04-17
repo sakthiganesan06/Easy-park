@@ -18,6 +18,9 @@ export default function SlotQrScanner({ onScanSuccess, onScanError }) {
       {
         fps: 10,
         qrbox: { width: 240, height: 240 },
+        videoConstraints: {
+          facingMode: { ideal: 'environment' },
+        },
       },
       false
     );
