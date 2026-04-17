@@ -136,8 +136,8 @@ export default function HomePage() {
   const [sheetOpen, setSheetOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [bookingFabModalOpen, setBookingFabModalOpen] = useState(false);
-  const sheetHeight = '55vh';
-  const sheetPeekHeight = '80px';
+  const sheetHeight = '70vh';
+  const sheetPeekHeight = '120px';
 
   const activeLockExpiresIso = useMemo(() => {
     if (activeBooking?.status !== BOOKING_STATUS.LOCKED || !activeBooking?.lockedAt) return null;
@@ -478,27 +478,27 @@ export default function HomePage() {
         }}
       >
         <div className="h-full flex flex-col">
-          {/* Handle */}
-          <div className="w-full flex flex-col items-center pt-3 pb-2">
+          {/* Handle — entire strip is tappable */}
+          <button
+            type="button"
+            onClick={() => setSheetOpen((prev) => !prev)}
+            aria-label={sheetOpen ? 'Collapse slots list' : 'Expand slots list'}
+            className="w-full flex flex-col items-center pt-3 pb-2 active:bg-white/5 transition-colors"
+          >
             <div className="w-10 h-1 bg-white/20 rounded-full mb-2" />
             <div className="flex items-center gap-2 text-sm">
               <span className="text-white/50">
                 <span className="text-emerald-400 font-bold">{availableCount}</span> spots available nearby
               </span>
-              <button
-                type="button"
-                onClick={() => setSheetOpen((prev) => !prev)}
-                className="p-1 rounded-md text-white/40 hover:text-white/70 transition-colors"
-                aria-label={sheetOpen ? 'Collapse slots list' : 'Expand slots list'}
-              >
+              <span className="p-1 text-white/40">
                 {sheetOpen ? (
                   <ChevronDown className="w-4 h-4" />
                 ) : (
                   <ChevronUp className="w-4 h-4" />
                 )}
-              </button>
+              </span>
             </div>
-          </div>
+          </button>
 
           {/* Search */}
           <div className="px-4 pb-3">
