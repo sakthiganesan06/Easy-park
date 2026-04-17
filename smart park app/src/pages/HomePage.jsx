@@ -469,7 +469,7 @@ export default function HomePage() {
 
       {/* Bottom sheet */}
       <div
-        className="bottom-sheet z-[1200]"
+        className="bottom-sheet"
         style={{
           height: sheetHeight,
           transform: sheetOpen

@@ -24,6 +24,22 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  /* Safe Area Utilities */
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .mt-safe {
+    margin-top: env(safe-area-inset-top);
+  }
+  .mb-safe {
+    margin-bottom: env(safe-area-inset-bottom);
   }
 
   /* Custom scrollbar */
@@ -115,11 +131,12 @@
     @apply min-h-screen bg-navy-900 pb-20;
   }
 
-  /* Bottom sheet */
+  /* Bottom sheet — must sit above BottomNav (z-[1300]) */
   .bottom-sheet {
     @apply fixed bottom-0 left-0 right-0 bg-navy-800/95 backdrop-blur-xl 
-           border-t border-white/10 rounded-t-3xl z-40 
+           border-t border-white/10 rounded-t-3xl
            transition-transform duration-500 ease-out;
+    z-index: 1400;
   }
 
   /* Pulsing dot (user location) */
