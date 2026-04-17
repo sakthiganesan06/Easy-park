@@ -131,12 +131,13 @@
     @apply min-h-screen bg-navy-900 pb-20;
   }
 
-  /* Bottom sheet — must sit above BottomNav (z-[1300]) */
+  /* Bottom sheet — anchored ABOVE the BottomNav (≈64px tall) so both are always visible */
   .bottom-sheet {
-    @apply fixed bottom-0 left-0 right-0 bg-navy-800/95 backdrop-blur-xl 
+    @apply fixed left-0 right-0 bg-navy-800/95 backdrop-blur-xl 
            border-t border-white/10 rounded-t-3xl
            transition-transform duration-500 ease-out;
-    z-index: 1400;
+    bottom: 64px;   /* sits on top of BottomNav, never covers it */
+    z-index: 1200;
   }
 
   /* Pulsing dot (user location) */

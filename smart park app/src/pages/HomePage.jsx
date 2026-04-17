@@ -137,7 +137,7 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [bookingFabModalOpen, setBookingFabModalOpen] = useState(false);
   const sheetHeight = '55vh';
-  const sheetPeekHeight = '138px';
+  const sheetPeekHeight = '80px';
 
   const activeLockExpiresIso = useMemo(() => {
     if (activeBooking?.status !== BOOKING_STATUS.LOCKED || !activeBooking?.lockedAt) return null;
